@@ -20,7 +20,7 @@ pipeline {
         stage ('Rename Docker Image') {
             steps {
                 sh 'docker tag tomcat-mysql_mydb  saigopi123456/tomcat-db'
-                sh 'docker tomcat-mysql_web saigopi123456/tomcat-web'       
+                sh 'docker tag tomcat-mysql_web saigopi123456/tomcat-web'       
             }
         }
         stage ('Login DockerHub') {
