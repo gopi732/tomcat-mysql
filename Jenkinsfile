@@ -3,25 +3,17 @@ pipeline {
     
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+        http_proxy = 'http://127.0.0.1:3128/'
+        https_proxy = 'http://127.0.0.1:3128/'
+        ftp_proxy = 'http://127.0.0.1:3128/'
+        socks_proxy = 'socks://127.0.0.1:3128/'
     }
 
     stages {
-
-        stage ('Git Checkout') {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/gopi732/spring-pet.git']]])
-            }
-        }
         
         stage ('Build Docker Image') {
             steps {
                 sh 'docker-compose build '       
-            }
-        }
-        stage ('Rename Docker Image') {
-            steps {
-                sh 'docker tag spring-pet_database  saigopi123456/spring-database'
-                sh 'docker tag spring-pet_spring saigopi123456/spring-app'       
             }
         }
         stage ('Login DockerHub') {
@@ -31,8 +23,8 @@ pipeline {
         }
         stage ('push Docker images') {
             steps {
-                sh 'docker push saigopi123456/spring-database'
-                sh 'docker push saigopi123456/spring-app'
+                sh 'docker push saigopi123456/tomcat-mysql_mydb'
+                sh 'docker push saigopi123456/tomcat-mysql_web'
 
             }
         }
