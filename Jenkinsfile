@@ -23,8 +23,8 @@ pipeline {
         }
         stage ('push Docker images') {
             steps {
-                sh 'docker push saigopi123456/tomcat-mysql_mydb'
-                sh 'docker push saigopi123456/tomcat-mysql_web'
+                sh 'docker push saigopi123456/tomcat-mysql_mydb:latest'
+                sh 'docker push saigopi123456/tomcat-mysql_web:latest'
 
             }
         }
