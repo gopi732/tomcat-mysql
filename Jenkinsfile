@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage ('Clean up') {
             steps {
-                sh 'docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi -f $(docker images -a -q)'
+                sh 'docker stop $(docker ps -a -q) || true && docker rm $(docker ps -a -q) || true && docker rmi -f $(docker images -a -q) || true'  
             }
         }
         stage ('Build Docker Image') {
