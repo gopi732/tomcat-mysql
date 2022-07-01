@@ -23,6 +23,16 @@ pipeline {
                 sh 'docker tag tomcat-mysql_mydb  saigopi123456/tomcat-db && docker tag tomcat-mysql_web saigopi123456/tomcat-web'      
             }
         }
+        stage ('create container'){
+            steps {
+                    sh 'docker-compose up -d && docker ps'
+            }
+        }
+        stage ('Container Testing '){
+            steps {
+                    sh 'wget localhost:'
+            }
+        }
         stage ('Login DockerHub') {
             steps {
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR  --password-stdin'       
