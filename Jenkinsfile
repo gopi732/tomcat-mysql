@@ -11,7 +11,11 @@ pipeline {
     }
 
     stages {
-        
+        stage ('Remove Docker Images') {
+            steps {
+                sh 'docker rmi -f $(docker images -a -q)'
+            }
+        }
         stage ('Build Docker Image') {
             steps {
                 sh 'docker-compose build '       
@@ -33,11 +37,6 @@ pipeline {
                 sh 'docker push saigopi123456/tomcat-db'
                 sh 'docker push saigopi123456/tomcat-web'
 
-            }
-        }
-        stage ('Remove Docker Images') {
-            steps {
-                sh 'docker rmi -f $(docker images -a -q)'
             }
         }
     }
