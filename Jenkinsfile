@@ -11,9 +11,9 @@ pipeline {
     }
 
     stages {
-        stage ('Remove Docker Images') {
+        stage ('Clean up') {
             steps {
-                sh 'docker rmi -f $(docker images -a -q)'
+                sh 'docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi -f $(docker images -a -q)'
             }
         }
         stage ('Build Docker Image') {
