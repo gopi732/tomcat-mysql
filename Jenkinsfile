@@ -22,7 +22,7 @@ pipeline {
         }
         stage ('Rename Docker Image') {
             steps {
-                sh 'docker tag tomcat-mysql_mydb $DOCKER_HUB_REPO1 && docker tag tomcat-mysql_web $DOCKER_HUB_REPO'      
+                sh 'docker tag tomcat-mysql_mydb $DOCKER_HUB_REPOO && docker tag tomcat-mysql_web $DOCKER_HUB_REPO'      
             }
         }
         stage ('create container'){
