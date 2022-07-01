@@ -30,17 +30,12 @@ pipeline {
         }
         stage ('Container Testing '){
             steps {
-                    sh 'wget localhost:'
+                    sh 'wget localhost:8088'
             }
         }
         stage ('Login DockerHub') {
             steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR  --password-stdin'       
-            }
-        }
-        stage ('push Docker images') {
-            steps {
-                sh 'docker push saigopi123456/tomcat-db && docker push saigopi123456/tomcat-web'
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR  --password-stdin && docker push saigopi123456/tomcat-db && docker push saigopi123456/tomcat-web'       
             }
         }
     }
