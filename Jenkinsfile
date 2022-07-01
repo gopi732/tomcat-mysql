@@ -30,7 +30,7 @@ pipeline {
         }
         stage ('Container Testing '){
             steps {
-                    sh 'wget localhost:8088'
+                    sh 'wget localhost:8088/gameoflife'
             }
         }
         stage ('Login DockerHub') {
