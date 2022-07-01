@@ -37,7 +37,7 @@ pipeline {
         }
         stage ('Login DockerHub') {
             steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR  --password-stdin && docker push $DOCKER_HUB_REPO1 && docker push DOCKER_HUB_REPO'       
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR  --password-stdin && docker push $DOCKER_HUB_REPO && docker push DOCKER_HUB_REPO1'       
             }
         }
     }
