@@ -42,7 +42,7 @@ pipeline {
         }
         stage ('Docker push') {
             steps {
-                sh 'docker push $DOCKER_HUB_REPO && docker push DOCKER_HUB_REPOO'
+                sh 'docker push $DOCKER_HUB_REPO && docker push $DOCKER_HUB_REPOO'
             }
         }
     }
