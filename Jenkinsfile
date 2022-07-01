@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKER_HUB_REPO = "saigopi123456/tomcat-web"
-        DOCKER_HUB_REPO1 = "saigopi123456/tomcat-db"
+        DOCKER_HUB_REPOO = "saigopi123456/tomcat-db"
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         http_proxy = 'http://127.0.0.1:3128/'
         https_proxy = 'http://127.0.0.1:3128/'
@@ -37,7 +37,7 @@ pipeline {
         }
         stage ('Login DockerHub') {
             steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR  --password-stdin && docker push $DOCKER_HUB_REPO && docker push DOCKER_HUB_REPO1'       
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR  --password-stdin && docker push $DOCKER_HUB_REPO && docker push DOCKER_HUB_REPOO'       
             }
         }
     }
