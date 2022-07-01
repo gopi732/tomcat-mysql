@@ -1,6 +1,8 @@
 pipeline {
     agent any
     environment {
+        DOCKER_HUB_REPO = "saigopi123456/tomcat-web"
+        DOCKER_HUB_REPO1 = "saigopi123456/tomcat-db"
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         http_proxy = 'http://127.0.0.1:3128/'
         https_proxy = 'http://127.0.0.1:3128/'
@@ -20,7 +22,7 @@ pipeline {
         }
         stage ('Rename Docker Image') {
             steps {
-                sh 'docker tag tomcat-mysql_mydb  saigopi123456/tomcat-db && docker tag tomcat-mysql_web saigopi123456/tomcat-web'      
+                sh 'docker tag tomcat-mysql_mydb $DOCKER_HUB_REPO1 && docker tag tomcat-mysql_web $DOCKER_HUB_REPO'      
             }
         }
         stage ('create container'){
@@ -35,7 +37,7 @@ pipeline {
         }
         stage ('Login DockerHub') {
             steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR  --password-stdin && docker push saigopi123456/tomcat-db && docker push saigopi123456/tomcat-web'       
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR  --password-stdin && docker push $DOCKER_HUB_REPO1 && docker push DOCKER_HUB_REPO'       
             }
         }
     }
